@@ -30,6 +30,8 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.NotThreadSafe;
 
+import com.eclipsesource.json.JsonHandler;
+
 /**
  * Represents a JSON array, i.e. an ordered collection of JSON values.
  * <p>
@@ -378,7 +380,8 @@ final class ImmutableJsonArray extends AbstractJsonValue implements JsonArray {
      */
     @NotThreadSafe
     static final class ValueListJsonHandler
-            extends DittoJsonHandler<List<JsonValue>, List<JsonField>, List<JsonValue>> {
+            extends JsonHandler<List<JsonValue>, List<JsonField>>
+            implements DittoJsonHandler<List<JsonValue>> {
 
         private final DefaultDittoJsonHandler defaultHandler;
         private List<JsonValue> value;
@@ -462,7 +465,7 @@ final class ImmutableJsonArray extends AbstractJsonValue implements JsonArray {
         }
 
         @Override
-        protected List<JsonValue> getValue() {
+        public List<JsonValue> getValue() {
             return value;
         }
 

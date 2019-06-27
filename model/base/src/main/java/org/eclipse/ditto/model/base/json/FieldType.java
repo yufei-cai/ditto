@@ -44,7 +44,7 @@ public enum FieldType implements JsonFieldMarker, Predicate<JsonField> {
 
     private final Predicate<JsonField> predicate;
 
-    private FieldType() {
+    FieldType() {
         predicate = jsonField -> {
             final Optional<JsonFieldDefinition> definition = jsonField.getDefinition();
             return !definition.isPresent() || jsonField.isMarkedAs(this);

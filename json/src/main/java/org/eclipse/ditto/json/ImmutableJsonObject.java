@@ -34,6 +34,8 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.NotThreadSafe;
 
+import com.eclipsesource.json.JsonHandler;
+
 /**
  * An immutable implementation of a JSON object.
  * Each call to a method which would alter the state of this object returns a new JSON object with the altered state
@@ -658,7 +660,8 @@ final class ImmutableJsonObject extends AbstractJsonValue implements JsonObject 
      */
     @NotThreadSafe
     static final class FieldMapJsonHandler
-            extends DittoJsonHandler<List<JsonValue>, List<JsonField>, Map<String, JsonField>> {
+            extends JsonHandler<List<JsonValue>, List<JsonField>>
+            implements DittoJsonHandler<Map<String, JsonField>> {
 
         private final DefaultDittoJsonHandler defaultHandler;
         private Map<String, JsonField> value;
@@ -746,7 +749,7 @@ final class ImmutableJsonObject extends AbstractJsonValue implements JsonObject 
         }
 
         @Override
-        protected Map<String, JsonField> getValue() {
+        public Map<String, JsonField> getValue() {
             return value;
         }
 

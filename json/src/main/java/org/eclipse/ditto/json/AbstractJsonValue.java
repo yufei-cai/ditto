@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
  * This class merely exists to save work when writing other implementations of {@code JsonValue}.
  * With this abstract implementation only the particular methods have to be re-implemented.
 */
-abstract class AbstractJsonValue implements JsonValue {
+public abstract class AbstractJsonValue implements JsonValue {
 
     /**
      * Constructs a new {@code AbstractJsonValue} object.

@@ -17,4 +17,20 @@ package org.eclipse.ditto.json;
  */
 public interface JsonNumber extends JsonValue {
 
+    default boolean isNumber() {
+        return true;
+    }
+
+    boolean isInt();
+
+    int asInt();
+
+    boolean isLong();
+
+    long asLong();
+
+    boolean isDouble();
+
+    double asDouble();
+
 }

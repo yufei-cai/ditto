@@ -22,12 +22,15 @@ import java.util.function.UnaryOperator;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import com.eclipsesource.json.JsonHandler;
+
 /**
  * Default implementation of {@link DittoJsonHandler} which uses {@link JsonArrayBuilder} and {@link JsonObjectBuilder}
  * for creating a new {@link JsonArray} or {@link JsonObject}.
  */
 @NotThreadSafe
-final class DefaultDittoJsonHandler extends DittoJsonHandler<List<JsonValue>, List<JsonField>, JsonValue> {
+final class DefaultDittoJsonHandler extends JsonHandler<List<JsonValue>, List<JsonField>>
+        implements DittoJsonHandler<JsonValue> {
 
     private static final int DEFAULT_INITIAL_STRING_BUILDER_CAPACITY = 512;
     private static final char DELIMITER = ',';
@@ -189,7 +192,7 @@ final class DefaultDittoJsonHandler extends DittoJsonHandler<List<JsonValue>, Li
     }
 
     @Override
-    protected JsonValue getValue() {
+    public JsonValue getValue() {
         return jsonValue;
     }
 
